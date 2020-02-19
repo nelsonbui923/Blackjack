@@ -7,6 +7,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -19,6 +21,7 @@ body {
 .container h1 {
     font-size: 3em;
     font-family: 'Cedarville Cursive', cursive;
+    text-decoration: underline;
 }
 
 .container span {
@@ -37,6 +40,7 @@ body {
 
 .flex-blackjack-row-1 {
     color: white;
+    height: 49.7vh;
 }
 
 .flex-blackjack-row-1 div {

@@ -28,6 +28,8 @@ const hitSound = new Audio('./sounds/swish.m4a');
 const winSound = new Audio('./sounds/cash.mp3');
 const lossSound = new Audio('./sounds/aww.mp3');
 
+let winner;
+
 
 function showCard(card, activePlayer) {
     if(activePlayer['score'] <= 21) {
@@ -122,10 +124,26 @@ function updateScore(card, activePlayer) {
     }
 }
 
-function showScore(activePlayer) {
+async function showScore(activePlayer) {
     if(activePlayer['score'] > 21) {
         document.querySelector(activePlayer['scoreSpan']).textContent = 'BUSTED!!';
-        document.querySelector(activePlayer['scoreSpan']).style.color = 'red';       
+        document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
+        lossSound.play();
+        let message, messageColor;
+        message = 'You Lost...';
+        messageColor = 'red';
+        blackjackGame['losses']++;
+        document.querySelector('#losses').textContent = blackjackGame['losses'];
+        document.querySelector('#blackjack-result').textContent = message;
+        document.querySelector('#blackjack-result').style.color = messageColor;
+
+        blackjackGame['turnsOver'] = true;
+        
+        
+        await wait(2000);
+        blackjackDeal();
+
+
     } else {
         document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score'];
     }
