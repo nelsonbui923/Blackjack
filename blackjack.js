@@ -117,7 +117,7 @@ function updateScore(card, activePlayer) {
             activePlayer['score'] += blackjackGame['cardsMap'][card][1];
         } else {
             activePlayer['score'] += blackjackGame['cardsMap'][card][0];
-        }
+        } 
 
     } else {
     activePlayer['score']+= blackjackGame['cardsMap'][card];
@@ -126,16 +126,16 @@ function updateScore(card, activePlayer) {
 
 async function showScore(activePlayer) {
     if(activePlayer === YOU && activePlayer['score'] > 21) {
-        lossSound.play();
+        let message, messageColor;
+        message = 'You Lost...';
+        messageColor = 'red';
         document.querySelector(activePlayer['scoreSpan']).textContent = 'BUSTED!!';
         document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
         document.querySelector('#losses').textContent = blackjackGame['losses'];
         document.querySelector('#blackjack-result').textContent = message;
         document.querySelector('#blackjack-result').style.color = messageColor;
-        let message, messageColor;
-        message = 'You Lost...';
-        messageColor = 'red';
         blackjackGame['losses']++;
+        lossSound.play();
 
         blackjackGame['turnsOver'] = true;
         
@@ -207,9 +207,9 @@ function showResult(winner) {
         if (winner === YOU) {
             message = 'You Won!';
             messageColor = 'green';
-            winSound.play();
             document.querySelector('#wins').textContent = blackjackGame['wins'];
-
+            winSound.play();
+ 
             winnerAnimation.classList.add('winner');
         } else if (winner === DEALER) {
             message = 'You Lost...';
@@ -218,7 +218,7 @@ function showResult(winner) {
             document.querySelector('#losses').textContent = blackjackGame['losses'];
         } else {
             message = 'You Drew.';
-            messageColor = 'black';
+            messageColor = 'gray';
             document.querySelector('#draws').textContent = blackjackGame['draws'];
         }
         
